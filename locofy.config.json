@@ -1,0 +1,13 @@
+{
+    "components": [
+        "./src/Pages/home.jsx",
+        "./src/Pages/login.jsx",
+        "./src/Pages/notFound.jsx",
+        "./src/Pages/register.jsx"
+     
+     
+    ],
+    "wrapper": "./src/App.js",
+    "webpack": "./webpack.locofy.js",
+    "publicPath": "./public/assets"
+  }
