@@ -1,13 +1,5 @@
 {
-    "components": [
-        "./src/Pages/home.jsx",
-        "./src/Pages/login.jsx",
-        "./src/Pages/notFound.jsx",
-        "./src/Pages/register.jsx"
-     
-     
-    ],
-    "wrapper": "./src/App.js",
-    "webpack": "./webpack.locofy.js",
-    "publicPath": "./public/assets"
-  }
+  "components": [],
+  "projectId": "6698b63a2b04d1cc65493cef",
+  "projectName": "Desktop sign up and login pages by EditorM (Community)"
+}

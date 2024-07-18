@@ -14,13 +14,24 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
-export default function Register() {
+export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -39,18 +50,17 @@ export default function Register() {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            width:'327px'
-            
+            alignItems: 'center',
           }}
         >
-          {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
-          </Avatar> */}
-          <Typography component="h4" variant="h4" sx={{color:'#101010',fontWeight:'600', fontSize:'32px'}}>
-            Create your new account
+          </Avatar>
+          <Typography component="h1" variant="h1">
+            Login to your account
           </Typography>
-          <Typography component='p' sx={{color:'#878787',fontSize:'14px'}} >
-          Create an account to start looking for the food you like
+          <Typography component='p' >
+Please sign in to your account
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <Typography variant="h6" component="label" htmlFor="email" gutterBottom>
@@ -66,19 +76,6 @@ export default function Register() {
               placeholder='Enter Email'
               autoFocus
             />
-            <Typography variant="h6" component="label" htmlFor="username" gutterBottom>
-             User Name
-            </Typography>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              name="username"
-              autoComplete="username"
-              placeholder='Enter Username'
-              autoFocus
-            />
              <Typography variant="h6" component="label" htmlFor="password" gutterBottom>
               Password
             </Typography>
@@ -92,32 +89,12 @@ export default function Register() {
               id="password"
               autoComplete="current-password"
             />
-           < Grid item xs={12}>
-           <FormControlLabel
-              control={
-                <Checkbox
-                  value="allowExtraEmails"
-                  sx={{
-                    color: '#FE8C00',
-                    '&.Mui-checked': {
-                      color: '#FE8C00',
-                    },
-                  }}
-                />
-              }
-              label={
-                <Typography>
-                  I Agree with{' '}
-                  <Link href="#" sx={{ color: '#FE8C00', textDecoration: 'none' }}>
-                    Terms of Service
-                  </Link>{' '}
-                  and{' '}
-                  <Link href="#" sx={{ color: '#FE8C00', textDecoration: 'none' }}>
-                    Privacy Policy
-                  </Link>
-                </Typography>
-              }
-            />
+            <Grid container justifyContent="flex-end">
+              <Grid item >
+                <Link href="#" variant="body2" sx={{ textDecoration: "none", color: "#FE8C00" }}>
+                  Forgot password?
+                </Link>
+              </Grid>
               </Grid>
             
             <Button
@@ -132,37 +109,17 @@ export default function Register() {
           textTransform: "none",
                }}
             >
-              Register
+              Sign In
             </Button>
             <Divider sx={{ my: 2 }}>
             <Typography variant="body2" color="textSecondary">
               Or sign in with
             </Typography>
           </Divider>
-          <Button
-              fullWidth
-              variant="contained"
-              disableElevation
-              sx={{
-                backgroundColor: 'white', // Background color of the button
-               
-                "&:hover": {
-                  backgroundColor: 'white', // Maintain the same color on hover
-                },
-              }}
-            >
-              <img alt='Google' src='/assets/google.png'/>
-
-            </Button>
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-            <Typography variant='body2'>Have an account?</Typography>
-            <Link href="#" variant="body2" sx={{ textDecoration: "none", color: "#FE8C00", ml: 1 }}>
-             Sign In
-            </Link>
-          </Box>
+            
           </Box>
         </Box>
-       
+        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
