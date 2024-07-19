@@ -9,6 +9,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import TrackingScreen from './Pages/trackingScreen';
 
 
 
@@ -23,7 +24,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
           <Route path='/postLogin' element={<PostLogin/>}/>
-          
+          <Route path='trackingScreen' element={<TrackingScreen/>}/>
           
           <Route element={<NotFound/>} />
           </Routes>
