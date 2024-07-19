@@ -162,7 +162,7 @@ const TrackingScreen = () => {
 
     return (
         
-        <Container maxWidth="sm" sx={{  display: 'flex', flexDirection: 'column', alignItems: 'center',width:'375px',height:'100vh', backgroundImage:'url(/assets/h1.png)'}}>
+        <Container maxWidth="sm" sx={{  display: 'flex', flexDirection: 'column', alignItems: 'center',width:'375px',height:'auto', backgroundImage:'url(/assets/h1.png)'}}>
             <Box sx={{display:'flex',flexDirection:'column',alignItems:'center',}}>
                 <canvas ref={canvasRef} width={300} height={300}  />
 
