@@ -2,12 +2,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from "./Pages/home";
 import Login from './Pages/login';
 import Register from './Pages/register';
+import PostLogin from './Pages/postLogin';
 import NotFound from './Pages/notFound';
-import Animation from './Pages/animation';
+
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+
 
 
 
@@ -20,7 +22,9 @@ function App() {
           <Route exact path="/" element={<Home/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
-          <Route path='/animation' element ={<Animation/>}/>
+          <Route path='/postLogin' element={<PostLogin/>}/>
+          
+          
           <Route element={<NotFound/>} />
           </Routes>
       </div>

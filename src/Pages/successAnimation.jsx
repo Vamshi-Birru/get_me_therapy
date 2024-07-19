@@ -1,7 +1,7 @@
 import React from 'react';
-import '../Styles/animation.css';
+import '../Styles/successAnimation.css';
 
-const Animation = () => {
+const SuccessAnimation = () => {
   return (
     <div className="animated-icon-container">
       <svg viewBox="0 0 202.62 150.34" className="animated-icon">
@@ -24,4 +24,4 @@ const Animation = () => {
   );
 };
 
-export default Animation;
+export default SuccessAnimation;
