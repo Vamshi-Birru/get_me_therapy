@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: my-app
-    env: static
-    buildCommand: npm install && npm run build
-    publishDir: build
-    routes:
-      - src: '**'
-        dest: /index.html
