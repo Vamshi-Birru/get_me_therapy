@@ -1,11 +1,9 @@
-version: 1
 services:
   - type: web
-    name: your-service-name
-    buildCommand: npm run build
-    startCommand: serve -s build
-    env:
-      NODE_ENV: production
+    name: my-app
+    env: static
+    buildCommand: npm install && npm run build
+    publishDir: build
     routes:
-      - src: /*
+      - src: '**'
         dest: /index.html
