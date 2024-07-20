@@ -11,6 +11,9 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GoogleSignInButton from './googleSignInButton';
 import { useNavigate } from 'react-router-dom';
+import BASE_URL from '../config';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 
@@ -22,13 +25,25 @@ const defaultTheme = createTheme();
 export default function Login() {
   const navigate = useNavigate();
  
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    try{
+      const data = new FormData(event.currentTarget);
+      const email=data.get('email');
+      const password=data.get('password');;
+      console.log({
+        email: email,
+        password: password,
+      });
+      const res= await axios.post(`${BASE_URL}/login`,{email:email,password:password});
+      Cookies.set('token',res.data.token);
+      navigate("/postLogin");
+    }
+    catch(err){
+      console.log('Error: ',err);
+    }
+    
+
   };
 
   return (
@@ -106,12 +121,23 @@ Please sign in to your account
             </Typography>
           </Divider>
           <GoogleSignInButton />
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-            <Typography variant='body2'>Don't have an account?</Typography>
-            <Link href="/register" variant="body2" sx={{ textDecoration: "none", color: "#FE8C00", ml: 1 }}>
-              Register
-            </Link>
-          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2 }}>
+            <Typography variant="body2" sx={{ fontSize: '14px', color: '#878787' }}>
+                Don't have an account?
+            </Typography>
+            <Button
+                onClick={() => navigate("/register")}
+                variant="text"
+                sx={{
+                    color: '#FE8C00',
+                    ml: 1,
+                    textTransform: 'none', // Optional: remove uppercase text transformation
+                    fontSize: '14px', // Match the font size of the Typography
+                }}
+            >
+               Register
+            </Button>
+        </Box>
           </Box>
         </Box>
        

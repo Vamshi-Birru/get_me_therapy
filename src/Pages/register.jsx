@@ -13,6 +13,10 @@ import GoogleSignInButton from './googleSignInButton';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Cookies from 'js-cookie';
+import axios from 'axios';
+import BASE_URL from '../config';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -21,14 +25,27 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function Register() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      username:data.get('username'),
-      password: data.get('password'),
-    });
+    
+    try{
+      const data = new FormData(event.currentTarget);
+      const email=data.get('email');
+      const username=data.get('username');
+      const password=data.get('password');
+      console.log({
+        email: email,
+        username:username,
+        password: password,
+      });
+      const res= await axios.post(`${BASE_URL}/register`,{email:email,username:username,password:password});
+      Cookies.set('token',res.data.token);
+      navigate("/postLogin");
+    }
+    catch(err){
+      console.log('Error: ',err);
+    }
   };
 
   return (
@@ -141,12 +158,23 @@ export default function Register() {
             </Typography>
           </Divider>
           <GoogleSignInButton/>
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-            <Typography variant='body2'>Have an account?</Typography>
-            <Link href="/login" variant="body2" sx={{ textDecoration: "none", color: "#FE8C00", ml: 1 }}>
-             Sign In
-            </Link>
-          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2 }}>
+            <Typography variant="body2" sx={{ fontSize: '14px', color: '#878787' }}>
+                Have an account?
+            </Typography>
+            <Button
+                onClick={() => navigate("/login")}
+                variant="text"
+                sx={{
+                    color: '#FE8C00',
+                    ml: 1,
+                    textTransform: 'none', // Optional: remove uppercase text transformation
+                    fontSize: '14px', // Match the font size of the Typography
+                }}
+            >
+                Sign In
+            </Button>
+        </Box>
           </Box>
         </Box>
        
