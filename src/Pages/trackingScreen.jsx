@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { ShareOutlined } from '@mui/icons-material';
 
+
 const TrackingScreen = () => {
     const [time, setTime] = useState(new Date());
     const [speed, setSpeed] = useState(1);
@@ -149,8 +150,9 @@ const TrackingScreen = () => {
     };
 
     const handleShare = () => {
-        const baseUrl = "http://localhost:3000/sharedTrackingScreen";
-        const url = new URL(baseUrl);
+        const baseUrl = window.location.origin;
+       
+        const url = new URL(`${baseUrl}/sharedTrackingScreen`);
         url.searchParams.set('speed', speed);
         const shareUrl = url.toString();
         
