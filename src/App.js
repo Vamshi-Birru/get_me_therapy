@@ -10,6 +10,8 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import TrackingScreen from './Pages/trackingScreen';
+import SharedTrackingScreen from './Pages/sharedTrackingScreen';
+
 
 
 
@@ -17,6 +19,7 @@ import TrackingScreen from './Pages/trackingScreen';
 
 function App() {
   return (
+   
     <Router>
       <div>
         <Routes>
@@ -25,11 +28,13 @@ function App() {
           <Route path="/register" element={<Register/>} />
           <Route path='/postLogin' element={<PostLogin/>}/>
           <Route path='trackingScreen' element={<TrackingScreen/>}/>
+          <Route path='sharedTrackingScreen' element={<SharedTrackingScreen/>}/>
           
           <Route element={<NotFound/>} />
           </Routes>
       </div>
     </Router>
+   
   );
 }
 

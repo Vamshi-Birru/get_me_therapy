@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Divider } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
+
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -9,7 +9,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import GoogleSignInButton from './googleSignInButton';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -26,6 +26,7 @@ export default function Register() {
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
+      username:data.get('username'),
       password: data.get('password'),
     });
   };
@@ -139,24 +140,10 @@ export default function Register() {
               Or sign in with
             </Typography>
           </Divider>
-          <Button
-              fullWidth
-              variant="contained"
-              disableElevation
-              sx={{
-                backgroundColor: 'white', // Background color of the button
-               
-                "&:hover": {
-                  backgroundColor: 'white', // Maintain the same color on hover
-                },
-              }}
-            >
-              <img alt='Google' src='/assets/google.png'/>
-
-            </Button>
+          <GoogleSignInButton/>
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
             <Typography variant='body2'>Have an account?</Typography>
-            <Link href="#" variant="body2" sx={{ textDecoration: "none", color: "#FE8C00", ml: 1 }}>
+            <Link href="/login" variant="body2" sx={{ textDecoration: "none", color: "#FE8C00", ml: 1 }}>
              Sign In
             </Link>
           </Box>

@@ -149,11 +149,22 @@ const TrackingScreen = () => {
     };
 
     const handleShare = () => {
-        const url = new URL(window.location.href);
+        const baseUrl = "http://localhost:3000/sharedTrackingScreen";
+        const url = new URL(baseUrl);
         url.searchParams.set('speed', speed);
-        setShareUrl(url.toString());
-        setSnackbarOpen(true);
-        navigator.clipboard.writeText(url.toString());
+        const shareUrl = url.toString();
+        
+        window.open(shareUrl, '_blank');
+
+        // // Copy the URL to the clipboard
+        // navigator.clipboard.writeText(shareUrl)
+        //     .then(() => {
+        //         // Notify the user that the URL was copied
+        //         setSnackbarOpen(true);
+        //     })
+        //     .catch(err => {
+        //         console.error('Failed to copy URL: ', err);
+        //     });
     };
 
     const handleCloseSnackbar = () => {
@@ -217,7 +228,7 @@ const TrackingScreen = () => {
                     message="Share URL copied to clipboard!"
                 />
                 <Box sx={{my:4,backgroundColor:'#FE8C00',borderRadius:'100px',padding:"25px", alignItems:'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center' }}>
-                    <Typography variant='h5' color='white' >Quote of the second</Typography>
+                    <Typography variant='h5'sx={{fontWeight:'600'}} color='black' >Quote of the second</Typography>
                  {error && <Typography variant='body' color='white'>Error: {error}</Typography>}
       {quote && 
         

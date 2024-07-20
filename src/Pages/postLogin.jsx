@@ -4,30 +4,24 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import HorizontalRuleRoundedIcon from '@mui/icons-material/HorizontalRuleRounded';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import { Grid } from '@mui/material';
-import EastIcon from '@mui/icons-material/East';
+
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import CircularAnimation from './circle'
+
 import SuccessAnimation from "./successAnimation"
+import Cookies from 'js-cookie';
 
 function PostLogin() {
   const [value, setValue] = React.useState(0);
   const navigate = useNavigate();
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleLogout = () => {
+    // Clear cookies
+    Cookies.remove('your-cookie-name'); // Replace 'your-cookie-name' with the actual cookie name
+
+    // Navigate to root path
+    navigate('/');
   };
-  let backgroundImage;
-  if (value === 0) {
-    backgroundImage = `url(/assets/h1.png)`;
-  } else if (value === 1) {
-    backgroundImage = `url(/assets/h2.png)`;
-  } else if (value === 2) {
-    backgroundImage = `url(/assets/h3.png)`;
-  }
+  
 
   return (
     <Container component="main" disableGutters>
@@ -48,7 +42,7 @@ function PostLogin() {
             backgroundSize: '100% auto',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
-            backgroundImage: backgroundImage,
+            backgroundImage: 'url(/assets/h1.png)',
             width: '386px',
             height: '100vh',
             overflow: 'hidden', 
@@ -91,9 +85,22 @@ function PostLogin() {
           padding:'16px'
                }}
             >
-             <Typography varient='body' sx={{fontWeight:'600', fontSize:'14px', width:'150px',height:'20px'}}> Go to Tracking Screen</Typography>
+             <Typography varient='body' sx={{fontWeight:'600', fontSize:'14px', width:'150px',height:'20px'}} onClick={()=>navigate("/trackingScreen")}> Go to Tracking Screen</Typography>
             </Button>
-            <Typography varient='body' sx={{fontWeight:'500',fontSize:'14px', color:'#878787'}}>Logout</Typography>
+            <Button
+      onClick={handleLogout}
+      sx={{
+        fontWeight: '500',
+        fontSize: '14px',
+        color: '#878787',
+        textTransform: 'none',
+        '&:hover': {
+          color: '#FE8C00',
+        },
+      }}
+    >
+      Logout
+    </Button>
           </Box>
         </Paper>
       </Box>
