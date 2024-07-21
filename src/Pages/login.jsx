@@ -14,6 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import BASE_URL from '../config';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -35,11 +37,13 @@ export default function Login() {
         email: email,
         password: password,
       });
-      const res= await axios.post(`${BASE_URL}/login`,{email:email,password:password});
+      const res= await axios.post(`https://get-me-therapy-api.onrender.com/login`,{email:email,password:password});
       Cookies.set('token',res.data.token);
+      toast.success('Login successful!');
       navigate("/postLogin");
     }
     catch(err){
+      toast.error(err.response.data.message);
       console.log('Error: ',err);
     }
     
@@ -140,7 +144,7 @@ Please sign in to your account
         </Box>
           </Box>
         </Box>
-       
+        <ToastContainer />
       </Container>
     </ThemeProvider>
   );

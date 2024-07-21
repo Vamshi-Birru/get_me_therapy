@@ -17,6 +17,8 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import BASE_URL from '../config';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -39,11 +41,13 @@ export default function Register() {
         username:username,
         password: password,
       });
-      const res= await axios.post(`${BASE_URL}/register`,{email:email,username:username,password:password});
+      const res= await axios.post(`https://get-me-therapy-api.onrender.com/register`,{email:email,username:username,password:password});
       Cookies.set('token',res.data.token);
+      toast.success('Register successful!');
       navigate("/postLogin");
     }
     catch(err){
+      toast.error(err.response.data.message);
       console.log('Error: ',err);
     }
   };
@@ -177,7 +181,7 @@ export default function Register() {
         </Box>
           </Box>
         </Box>
-       
+        <ToastContainer />
       </Container>
     </ThemeProvider>
   );
